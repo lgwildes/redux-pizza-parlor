@@ -13,7 +13,7 @@ const pizzaList = (state=[], action) => {
     return state;
 }
 
-const order = (state={}, action) => {
+const order = (state=[], action) => {
     //TODO add customer info and pizza order from form/cart info idk
     return state;
 

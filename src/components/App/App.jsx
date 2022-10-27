@@ -8,6 +8,7 @@ import InfoForm from '../InfoForm/InfoForm';
 import HeaderTotal from '../HeaderTotal/HeaderTotal';
 
 import PizzaList from '../PizzaList/PizzaList';
+import Admin from '../Admin/Admin';
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
 
   useEffect(() => {
     getPizzaList();
+    getOrderList();
   }, [])
 
   const getPizzaList = () => {
@@ -26,8 +28,18 @@ function App() {
       .catch(err => console.log(err))
   }
 
+
+  const getOrderList = () => {
+    axios({
+      method: 'GET',
+      url: '/api/order'
+    })
+      .then(res => dispatch({type:'GET_ORDERS', payload: res.data}))
+      .catch(err => console.log(err))
+}
   const addNewCustomerInfo = (customerInfo) => {
     console.log(`in addNewCustomerInfo`, customerInfo)
+
   }
 
   return (
@@ -42,9 +54,15 @@ function App() {
           <PizzaList />
         </Route>
 
+
+        <Route exact path='/admin'>
+          <Admin />
+         </Route >
+
         <Route exact path="/info" >
           <InfoForm
             addNewCustomerInfo={addNewCustomerInfo} />
+
         </Route>
 
       </Router>
