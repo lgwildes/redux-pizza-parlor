@@ -15,7 +15,7 @@ function PizzaList() {
     }
 
     const submit = () => {
-        const chosenPizzas = {pizzas: pizzaList.filter(pizza => inCart.includes(pizza.id)).map(chosenPizza => ({id:chosenPizza.id, quantity:1, price:chosenPizza.price}))}
+        const chosenPizzas = {pizzas: pizzaList.filter(pizza => inCart.includes(pizza.id)).map(chosenPizza => ({id:chosenPizza.id, name:chosenPizza.name, quantity:1, price:chosenPizza.price}))}
         chosenPizzas.total = chosenPizzas.pizzas.reduce((prev, next) => prev += Number(next.price), 0);
         console.log(chosenPizzas);
         dispatch({type:'ADD_PIZZAS', payload:chosenPizzas});
