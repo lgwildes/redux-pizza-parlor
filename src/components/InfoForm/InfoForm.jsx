@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { useHistory } from "react-router-dom";
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
-function InfoForm( {addNewCustomerInfo} ) {
+function InfoForm({ addNewCustomerInfo }) {
 
     const total = useSelector(store => store.total)
     const history = useHistory();
+    const dispatch = useDispatch();
 
     let [customerInfo, setCustomerInfo] = useState({customer_name:'', street_address:'', city:'', zip:'', type:'', total:total})
 
@@ -14,7 +15,7 @@ function InfoForm( {addNewCustomerInfo} ) {
         setCustomerInfo({
             ...customerInfo,
             customer_name: event.target.value,
-            
+
         })
         //console.log('name change is ', event.target.value);
     }
@@ -62,14 +63,15 @@ function InfoForm( {addNewCustomerInfo} ) {
 
     const addCustomerInfo = (event) => {
         event.preventDefault();
-        console.log(`adding customer `,customerInfo)
+        console.log(`adding customer `, customerInfo)
+            
+        dispatch({
+                type: 'ADD_INFO',
+                payload: customerInfo
+            })
 
-        //TODO axios request function
-        addNewCustomerInfo(
-            customerInfo
-        );
         history.push('/checkout')
-        
+
     }
 
 
@@ -79,38 +81,38 @@ function InfoForm( {addNewCustomerInfo} ) {
             <h2>Step 2: Customer Information</h2>
 
             <form onSubmit={(event) => addCustomerInfo(event)}>
-                <input 
+                <input
                     onChange={handleNameChange}
-                    type="text" 
-                    placeholder="Name"/>
+                    type="text"
+                    placeholder="Name" />
 
-                <input 
+                <input
                     onChange={handleAddressChange}
-                    type="text" 
-                    placeholder="Street Address"/>
+                    type="text"
+                    placeholder="Street Address" />
 
-                <input 
+                <input
                     onChange={handleCityChange}
-                    type="text" 
-                    placeholder="City"/>
+                    type="text"
+                    placeholder="City" />
 
-                <input 
+                <input
                     onChange={handleZipChange}
-                    type="text" 
-                    placeholder="Zip"/>
-                <input 
+                    type="text"
+                    placeholder="Zip" />
+                <input
                     onChange={handlePickup}
-                    type="radio" 
-                    name="type"/>
-                    <label>Pickup</label>
+                    type="radio"
+                    name="type" />
+                <label>Pickup</label>
 
-                <input 
+                <input
                     onChange={handleDelivery}
-                    type="radio" 
-                    name="type"/>
-                    <label>Delivery</label>
+                    type="radio"
+                    name="type" />
+                <label>Delivery</label>
 
-                <button 
+                <button
                     type="submit">Next</button>
 
             </form>

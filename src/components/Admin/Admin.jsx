@@ -3,7 +3,7 @@ import './Admin.css';
 
 function Admin() {
 
-    const orderList = useSelector(({order}) => order)
+    const orderList = useSelector(({ order }) => order)
 
     return (
         <table id="orderTable">
@@ -16,14 +16,14 @@ function Admin() {
                 </tr>
             </thead>
             <tbody>
-                {orderList.map(order => 
-                        <tr>
-                            <td>{order.customer_name}</td>
-                            <td>{order.time}</td>
-                            <td>{order.type}</td>
-                            <td>{order.total}</td>
-                        </tr>
-                    )}
+                {orderList.map(order =>
+                    <tr>
+                        <td>{order.customer_name}</td>
+                        <td>{order.time}</td>
+                        <td>{order.type}</td>
+                        <td>{order.total}</td>
+                    </tr>
+                )}
             </tbody>
         </table>
     )

@@ -9,7 +9,7 @@ router.get('/', (req, res) => {
         res.send(result.rows);
     }).catch((error) => {
         console.log('Error GET /api/order', error);
-        res.sendStatus(500);  
+        res.sendStatus(500);
     });
 })
 
