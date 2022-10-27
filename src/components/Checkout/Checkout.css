@@ -1,0 +1,35 @@
+
+
+#container {
+	max-width: 1000px;
+	margin-right:auto;
+	margin-left:auto;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	min-height:100px;
+}
+
+#orderTable {
+	width:100%;
+	border:1px solid;
+}
+
+#orderHead {
+	display:flex;
+	width:100%;
+	background:#000;
+    color: white;
+	
+}
+
+.orderRow {
+	display:flex;
+	width:100%;
+	padding:(1.5) 0;
+
+	
+}
+.orderRow:nth-child(odd) {
+    background: lightgrey
+}
