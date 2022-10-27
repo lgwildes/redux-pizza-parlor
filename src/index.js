@@ -16,7 +16,7 @@ const pizzaList = (state=[], action) => {
 const order = (state={}, action) => {
     //TODO add customer info and pizza order from form/cart info idk
     return state;
-    return state;
+
 }
 
 const cart = (state=[], action) => {

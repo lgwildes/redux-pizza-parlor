@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import axios from 'axios';
 import './App.css';
 import { HashRouter as Router, Route, Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 import InfoForm from '../InfoForm/InfoForm';
 import HeaderTotal from '../HeaderTotal/HeaderTotal';
@@ -9,6 +10,8 @@ import HeaderTotal from '../HeaderTotal/HeaderTotal';
 import PizzaList from '../PizzaList/PizzaList';
 
 function App() {
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     getPizzaList();
@@ -24,7 +27,7 @@ function App() {
   }
 
   const addNewCustomerInfo = (customerInfo) => {
-    console.log(`in addNewCustomerInfo ${customerInfo}`)
+    console.log(`in addNewCustomerInfo`, customerInfo)
   }
 
   return (
@@ -34,11 +37,11 @@ function App() {
         <HeaderTotal />
       </header>
       <Router>
-        <Route path="/">
+        <Route exact path="/">
           <h1>Step 1: Select Your Pizza</h1>
           <PizzaList />
         </Route>
-        
+
         <Route exact path="/info" >
           <InfoForm
             addNewCustomerInfo={addNewCustomerInfo} />

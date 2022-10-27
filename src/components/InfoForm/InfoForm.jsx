@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
+import { useHistory } from "react-router-dom";
 
 function InfoForm( {addNewCustomerInfo} ) {
+
+    const history = useHistory();
 
     let [customerInfo, setCustomerInfo] = useState({customer_name:'', street_address:'', city:'', zip:'', type:''})
 
@@ -56,12 +59,14 @@ function InfoForm( {addNewCustomerInfo} ) {
 
     const addCustomerInfo = (event) => {
         event.preventDefault();
-        console.log(`adding product ${customerInfo}`)
+        console.log(`adding customer `,customerInfo)
 
         //TODO axios request function
         addNewCustomerInfo(
             customerInfo
         );
+        history.push('/checkout')
+        
     }
 
 
@@ -102,7 +107,8 @@ function InfoForm( {addNewCustomerInfo} ) {
                     name="type"/>
                     <label>Delivery</label>
 
-                <button type="submit">Next</button>
+                <button 
+                    type="submit">Next</button>
 
             </form>
         </>
