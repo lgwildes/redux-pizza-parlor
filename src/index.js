@@ -13,9 +13,13 @@ const pizzaList = (state = [], action) => {
     return state;
 }
 
-const order = (state = [], action) => {
-    if (action.type === 'GET_ORDERS') {
-        return action.payload;
+const order = (state={}, action) => {
+    //TODO add customer info and pizza order from form/cart info idk
+    switch(action.type){
+        case 'SET_CHECKOUT':
+            return {}
+        case 'GET_ORDERS':
+            return action.payload;
     }
     return state;
 }
