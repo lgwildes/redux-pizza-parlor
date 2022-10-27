@@ -39,6 +39,18 @@ function App() {
 }
   const addNewCustomerInfo = (customerInfo) => {
     console.log(`in addNewCustomerInfo`, customerInfo)
+    
+    axios({
+      method: 'POST',
+      url: '/api/order',
+      data: customerInfo
+    })
+      .then(() => {
+        
+      })
+      .catch((error) => {
+        console.log('POST error', error);
+      })
 
   }
 

@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { useHistory } from "react-router-dom";
+import { useSelector } from 'react-redux';
 
 function InfoForm( {addNewCustomerInfo} ) {
 
+    const total = useSelector(store => store.total)
     const history = useHistory();
 
-    let [customerInfo, setCustomerInfo] = useState({customer_name:'', street_address:'', city:'', zip:'', type:''})
+    let [customerInfo, setCustomerInfo] = useState({customer_name:'', street_address:'', city:'', zip:'', type:'', total:total})
 
     // when user types in any input it is handled by these event handlers and updates state
     const handleNameChange = (event) => {
@@ -56,6 +58,7 @@ function InfoForm( {addNewCustomerInfo} ) {
         })
         console.log('type is Delivery')
     }
+
 
     const addCustomerInfo = (event) => {
         event.preventDefault();
