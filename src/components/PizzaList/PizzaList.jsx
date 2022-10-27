@@ -6,19 +6,23 @@ import './PizzaList.css';
 
 function PizzaList() {
     const [inCart, setCart] = useState([]);
-    const pizzaList = useSelector(({pizzaList}) => pizzaList);
+    const pizzaList = useSelector(({ pizzaList }) => pizzaList);
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const handleClick = (id) => {
-        inCart.includes(id) ? setCart(inCart.filter(x => x != id)) : setCart(inCart.concat(id));
+    const handleClick = (pizza) => {
+        if (inCart.map(x => x.id).includes(pizza.id)) {
+            setCart(inCart.filter(y => y.id != pizza.id));
+            dispatch({ type: 'SUB_TOTAL', payload: Number(pizza.price) })
+        }
+        else {
+            setCart(inCart.concat(pizza));
+            dispatch({ type: 'ADD_TOTAL', payload: Number(pizza.price) })
+        }
     }
 
     const submit = () => {
-        const chosenPizzas = {pizzas: pizzaList.filter(pizza => inCart.includes(pizza.id)).map(chosenPizza => ({id:chosenPizza.id, name:chosenPizza.name, quantity:1, price:chosenPizza.price}))}
-        chosenPizzas.total = chosenPizzas.pizzas.reduce((prev, next) => prev += Number(next.price), 0);
-        console.log(chosenPizzas);
-        dispatch({type:'ADD_PIZZAS', payload:chosenPizzas});
+        dispatch({ type: 'ADD_PIZZAS', payload: { pizzas: inCart } });
         history.push('/info');
     }
 
@@ -26,7 +30,7 @@ function PizzaList() {
 
     return (
         <div id="pizzaList">
-            {pizzaList.map(pizza => <PizzaItem key={pizza.id} pizza={pizza} handleClick={handleClick}/>)}
+            {pizzaList.map(pizza => <PizzaItem key={pizza.id} pizza={pizza} handleClick={handleClick} />)}
             <button onClick={submit} id="pizzaNext">NEXT</button>
         </div>
     )
