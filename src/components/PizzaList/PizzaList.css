@@ -1,0 +1,10 @@
+#pizzaList {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+#pizzaNext {
+    width: 200px;
+    height: 50px
+}

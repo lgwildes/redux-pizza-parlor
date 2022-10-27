@@ -1,14 +1,27 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import axios from 'axios';
 import './App.css';
-import { HashRouter as Router, Route, Link} from 'react-router-dom';
+import { HashRouter as Router, Route, Link } from 'react-router-dom';
 
 import InfoForm from '../InfoForm/InfoForm';
 import HeaderTotal from '../HeaderTotal/HeaderTotal';
 
+import PizzaList from '../PizzaList/PizzaList';
 
 function App() {
 
+  useEffect(() => {
+    getPizzaList();
+  }, [])
+
+  const getPizzaList = () => {
+    axios({
+      method: 'GET',
+      url: '/api/pizza'
+    })
+      .then(res => dispatch({ type: 'GET_PIZZAS', payload: res.data }))
+      .catch(err => console.log(err))
+  }
 
   const addNewCustomerInfo = (customerInfo) => {
     console.log(`in addNewCustomerInfo ${customerInfo}`)
@@ -21,14 +34,18 @@ function App() {
         <HeaderTotal />
       </header>
       <Router>
-
-        <Route exact path ="/info" >
+        <Route path="/">
+          <h1>Step 1: Select Your Pizza</h1>
+          <PizzaList />
+        </Route>
+        
+        <Route exact path="/info" >
           <InfoForm
             addNewCustomerInfo={addNewCustomerInfo} />
         </Route>
 
       </Router>
-  
+
     </div>
   );
 }
