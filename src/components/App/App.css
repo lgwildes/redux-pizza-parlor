@@ -5,9 +5,13 @@
 .App-header {
   background-color: #222;
   height: 70px;
-  padding: 20px;
+  padding: 30px;
   color: white;
   margin-bottom: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .App-title {
