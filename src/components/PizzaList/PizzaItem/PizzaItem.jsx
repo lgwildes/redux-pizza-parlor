@@ -6,7 +6,7 @@ function PizzaItem({pizza, handleClick}) {
     const {name, description, price, image_path} = pizza;
     const [toggleButton, setToggle] = useState(true);
     const togglePizza = () => {
-        handleClick(pizza.id);
+        handleClick(pizza);
         setToggle(!toggleButton);
     }
 

@@ -14,9 +14,10 @@ const pizzaList = (state=[], action) => {
 }
 
 const order = (state=[], action) => {
-    //TODO add customer info and pizza order from form/cart info idk
+    if(action.type === 'GET_ORDERS') {
+        return action.payload;
+    }
     return state;
-
 }
 
 const cart = (state=[], action) => {
@@ -26,11 +27,22 @@ const cart = (state=[], action) => {
     return state;
 }
 
+const total = (state=0, action) => {
+    switch(action.type) {
+        case 'ADD_TOTAL':
+            return state += action.payload;
+        case 'SUB_TOTAL':
+            return state -= action.payload;
+        default: return state;
+    }
+}
+
 const storeInstance = createStore(
     combineReducers({
         pizzaList,
         order,
-        cart
+        cart,
+        total
     }),
     applyMiddleware(logger)
 );

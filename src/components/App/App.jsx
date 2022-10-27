@@ -9,9 +9,10 @@ import HeaderTotal from '../HeaderTotal/HeaderTotal';
 
 import PizzaList from '../PizzaList/PizzaList';
 import Admin from '../Admin/Admin';
+import { useState } from 'react';
 
 function App() {
-
+  const [total, setTotal] = useState(0);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -46,12 +47,12 @@ function App() {
     <div className='App'>
       <header className='App-header'>
         <h1 className='App-title'>Prime Pizza</h1>
-        <HeaderTotal />
+        <HeaderTotal total={total}/>
       </header>
       <Router>
         <Route exact path="/">
           <h1>Step 1: Select Your Pizza</h1>
-          <PizzaList />
+          <PizzaList setTotal={setTotal} total={total}/>
         </Route>
 
 
