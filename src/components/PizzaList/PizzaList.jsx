@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import PizzaItem from "./PizzaItem/PizzaItem";
 import './PizzaList.css';
 
@@ -8,6 +8,7 @@ function PizzaList() {
     const [inCart, setCart] = useState([]);
     const pizzaList = useSelector(({pizzaList}) => pizzaList);
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const handleClick = (id) => {
         inCart.includes(id) ? setCart(inCart.filter(x => x != id)) : setCart(inCart.concat(id));
@@ -18,6 +19,7 @@ function PizzaList() {
         chosenPizzas.total = chosenPizzas.pizzas.reduce((prev, next) => prev += Number(next.price), 0);
         console.log(chosenPizzas);
         dispatch({type:'ADD_PIZZAS', payload:chosenPizzas});
+        history.push('/info');
     }
 
     console.log(inCart);

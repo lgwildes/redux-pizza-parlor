@@ -4,12 +4,14 @@ import './App.css';
 import { HashRouter as Router, Route, Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import PizzaList from '../PizzaList/PizzaList';
+import Admin from '../Admin/Admin';
 
 function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
     getPizzaList();
+    getOrderList();
   }, [])
 
   const getPizzaList = () => {
@@ -21,6 +23,15 @@ function App() {
       .catch(err => console.log(err))
   }
 
+  const getOrderList = () => {
+    axios({
+      method: 'GET',
+      url: '/api/order'
+    })
+      .then(res => dispatch({type:'GET_ORDERS', payload: res.data}))
+      .catch(err => console.log(err))
+  }
+
   return (
     <div className='App'>
       <header className='App-header'>
@@ -28,10 +39,15 @@ function App() {
       </header>
 
       <Router>
-        <Route path="/">
+        <Route exact path="/">
           <h1>Step 1: Select Your Pizza</h1>
           <PizzaList />
         </Route>
+
+        <Route exact path='/admin'>
+          <Admin />
+        </Route>
+
       </Router>
 
     </div>
