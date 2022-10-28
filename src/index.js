@@ -19,9 +19,8 @@ const order = (state={}, action) => {
         case 'SET_CHECKOUT':
             return {}
         case 'ADD_INFO':
-            return action.payload
-        case 'GET_ORDERS':
             return action.payload;
+        default:
     }
     return state;
 }
@@ -49,12 +48,22 @@ const total = (state = 0, action) => {
     }
 }
 
+const orderList = (state = [], action) => {
+    switch (action.type) {
+        case 'GET_ORDERS':
+            return action.payload;
+        default:
+            return state;
+    }
+}
+
 const storeInstance = createStore(
     combineReducers({
         pizzaList,
         order,
         cart,
-        total
+        total,
+        orderList
     }),
     applyMiddleware(logger)
 );
