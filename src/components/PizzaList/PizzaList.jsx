@@ -16,13 +16,13 @@ function PizzaList() {
             dispatch({ type: 'SUB_TOTAL', payload: Number(pizza.price) })
         }
         else {
-            setCart(inCart.concat(pizza));
+            setCart(inCart.concat({...pizza, quantity: 1}));
             dispatch({ type: 'ADD_TOTAL', payload: Number(pizza.price) })
         }
     }
 
     const submit = () => {
-        dispatch({ type: 'ADD_PIZZAS', payload: { pizzas: inCart } });
+        dispatch({ type: 'ADD_PIZZAS', payload: inCart });
         history.push('/info');
     }
 

@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
@@ -14,17 +15,19 @@ function Checkout({checkout}){
     console.log('active Cart', activeCart);
     console.log('active Order', activeOrder);
 
-    const handleCheckout = () => {
-
+    useEffect(() => {
         setDatabaseOrder({
-            customer_name: activeOrder.name,
+            customer_name: activeOrder.customer_name,
             street_address: activeOrder.street_address,
             city: activeOrder.city,
-            // zip,
-            // type,
-            total: activeCart.total
-            // pizzas:
+            zip: activeOrder.zip,
+            type: activeOrder.type,
+            total: activeTotal,
+            pizzas: activeCart
         });
+    }, [])
+
+    const handleCheckout = () => {
 
         checkout(databaseOrder); //?????????
 
@@ -54,7 +57,7 @@ function Checkout({checkout}){
             </thead>
             <tbody>
                 {/* pizza info */}
-                {activeCart.pizzas.map(pizza => {
+                {activeCart.map(pizza => {
                     return(<tr key={pizza.id}>
                         <td>{pizza.name}</td>
                         <td>{pizza.quantity}</td>
@@ -65,7 +68,7 @@ function Checkout({checkout}){
         </table>
     </div>
 
-            <h4>Total: {activeCart.total}</h4>
+            <h4>Total: {activeTotal}</h4>
         <button onClick={handleCheckout}>CHECKOUT</button>
         </>
     )

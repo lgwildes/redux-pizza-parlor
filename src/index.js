@@ -18,6 +18,8 @@ const order = (state={}, action) => {
     switch(action.type){
         case 'SET_CHECKOUT':
             return {}
+        case 'ADD_INFO':
+            return action.payload
         case 'GET_ORDERS':
             return action.payload;
     }
@@ -25,8 +27,12 @@ const order = (state={}, action) => {
 }
 
 const cart = (state = [], action) => {
-    if (action.type === 'ADD_PIZZAS') {
-        return action.payload;
+    switch(action.type) {
+        case 'ADD_PIZZAS':
+            return action.payload;
+        case 'SET_CHECKOUT':
+            return []
+        default:
     }
     return state;
 }
@@ -37,6 +43,8 @@ const total = (state = 0, action) => {
             return state += action.payload;
         case 'SUB_TOTAL':
             return state -= action.payload;
+        case 'SET_CHECKOUT':
+            return 0;
         default: return state;
     }
 }

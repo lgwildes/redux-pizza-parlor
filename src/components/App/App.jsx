@@ -10,7 +10,6 @@ import PizzaList from '../PizzaList/PizzaList';
 import Admin from '../Admin/Admin';
 
 function App() {
-  const [total, setTotal] = useState(0);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -37,20 +36,7 @@ function App() {
       .catch(err => console.log(err))
   }
   
-  const addNewCustomerInfo = (customerInfo) => {
-    console.log(`in addNewCustomerInfo`, customerInfo);
-
-    axios({
-      method: 'POST',
-      url: '/api/order',
-      data: customerInfo
-    }).then((response) => {
-  
-    }).catch((err) => {
-      console.error('ERROR in POST')
-    })
-  
-  }
+ 
 
   // const order = useSelector(store => store.order)
 
@@ -59,7 +45,7 @@ function App() {
     axios({
 
       method: 'POST',
-      url: '/api/checkout',
+      url: '/api/order',
       data: order
 
     }).then((response) => {
@@ -75,13 +61,13 @@ function App() {
     <div className='App'>
       <header className='App-header'>
         <h1 className='App-title'>Prime Pizza</h1>
-        <HeaderTotal total={total} />
+        <HeaderTotal />
       </header>
       <Router>
 
         <Route exact path="/">
           <h1>Step 1: Select Your Pizza</h1>
-          <PizzaList setTotal={setTotal} total={total} />
+          <PizzaList />
         </Route>
 
         <Route exact path='/admin'>
@@ -89,8 +75,7 @@ function App() {
         </Route >
 
         <Route exact path="/info" >
-          <InfoForm
-            addNewCustomerInfo={addNewCustomerInfo} />
+          <InfoForm />
         </Route>
 
         <Route exact path="/checkout">
