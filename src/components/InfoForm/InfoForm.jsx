@@ -117,6 +117,7 @@ function InfoForm({ addNewCustomerInfo }) {
                 </div>
 
                 <button
+                    className='button'
                     type="submit">Next</button>
 
             </form>

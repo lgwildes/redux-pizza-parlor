@@ -31,7 +31,10 @@ function PizzaList() {
     return (
         <div id="pizzaList">
             {pizzaList.map(pizza => <PizzaItem key={pizza.id} pizza={pizza} handleClick={handleClick} />)}
-            <div className="nextBtn"><button onClick={submit} id="pizzaNext">NEXT</button></div>
+            <div className="nextBtn"><button 
+                                    onClick={submit} 
+                                    id="pizzaNext"
+                                    className="button">NEXT</button></div>
         </div>
     )
 }
