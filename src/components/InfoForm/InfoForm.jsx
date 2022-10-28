@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
+import './InfoForm.css';
 
 function InfoForm({ addNewCustomerInfo }) {
 
@@ -80,7 +81,7 @@ function InfoForm({ addNewCustomerInfo }) {
         <>
             <h2>Step 2: Customer Information</h2>
 
-            <form onSubmit={(event) => addCustomerInfo(event)}>
+            <form className="form" onSubmit={(event) => addCustomerInfo(event)}>
                 <input
                     onChange={handleNameChange}
                     type="text"
@@ -100,7 +101,9 @@ function InfoForm({ addNewCustomerInfo }) {
                     onChange={handleZipChange}
                     type="text"
                     placeholder="Zip" />
+                <div className='radio'>
                 <input
+                   
                     onChange={handlePickup}
                     type="radio"
                     name="type" />
@@ -111,6 +114,7 @@ function InfoForm({ addNewCustomerInfo }) {
                     type="radio"
                     name="type" />
                 <label>Delivery</label>
+                </div>
 
                 <button
                     type="submit">Next</button>

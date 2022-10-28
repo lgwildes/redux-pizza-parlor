@@ -1,10 +1,31 @@
 #pizzaList {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
+    font-family: monospace;
+    display: grid;
+    /* flex-wrap: wrap; */
+    /* align-items: center; */
+    justify-items: center;
+    grid-gap: 10px;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    margin: 3em;
 }
 
 #pizzaNext {
     width: 200px;
     height: 50px
+}
+
+.nextBtn {
+    display: flex;
+    align-items: flex-end;
+}
+
+button {
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0, 0.388);
+    box-shadow: 2px 1px 3px 1px rgba(0, 0, 0, 0.093);
+    font-family: monospace;
+}
+
+button:active  {
+    background-color: rgb(170, 32, 32);
 }

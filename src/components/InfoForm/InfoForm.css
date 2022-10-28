@@ -1,0 +1,19 @@
+form {
+    display: flex;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+input {
+    margin: 1em;
+}
+
+.radio {
+    font-family: monospace;
+    display: flex;
+    align-items: center;
+    margin-bottom: 2em;
+    
+}
